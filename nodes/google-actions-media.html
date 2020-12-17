@@ -1,0 +1,79 @@
+<script type="text/javascript">
+    RED.nodes.registerType('Google Actions Media',{
+        category: 'Google Assistant',
+        color: '#FFFFFF',
+        defaults: {
+            name: {value: ""},
+            mediaType: {value: "", required: true},
+            offset: {value: '0s'},
+            mediaName: {value: "Media"},
+            mediaDescription: {value: 'A cool media.'},
+            mediaUrl: {value: '', required: true}
+
+        },
+        inputs:1,
+        outputs:1,
+        icon: "Google_Assistant_logo.png",
+        label: function() {
+            return this.name || "Google Actions Media";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="Google Actions Media">
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-mediaType"><i class="fa fa-photo-video"></i> Media type</label>
+        <select id="node-input-mediaType" style="width: 70%">
+            <option value="MEDIA_TYPE_UNSPECIFIED">Unknown</option>
+            <option value="AUDIO">Audio file</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-offset"><i class="fa fa-play"></i> Offset</label>
+        <input type="text" id="node-input-offset" placeholder="Offset">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-mediaName"><i class="fa fa-tag"></i> Media name</label>
+        <input type="text" id="node-input-mediaName" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-mediaDescription"><i class="fa fa-pen"></i> Media description</label>
+        <input type="text" id="node-input-mediaDescription" placeholder="Description">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-mediaUrl"><i class="fa fa-globe"></i> Media URL</label>
+        <input type="text" id="node-input-mediaUrl" placeholder="URL">
+    </div>
+
+    <div class="form-tips">The messages sent to this node must originate from a Google Action In node.</span></div>
+</script>
+
+<script type="text/html" data-help-name="Google Actions Media">
+    <p>Adds a media output to the Google Action request.</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>conversation
+            <span class="property-type">object</span>
+        </dt>
+        <dd>The conversation object.</dd>
+    </dl>
+    <h3>Outputs</h3>
+        <dl class="message-properties">
+            <dt>conversation
+                <span class="property-type">object</span>
+            </dt>
+            <dd>The (processed) conversation object.</dd>
+        </dl>
+    <h3>Details</h3>
+    <p>This node adds a media output to the actions request with the given name, description and url. It is mainly thought for audio. More features are planned for the future.</p>
+</script>

@@ -1,0 +1,44 @@
+<script type="text/javascript">
+    RED.nodes.registerType('Google Actions Server',{
+        category: 'config',
+        defaults: {
+            path: {value: '/fulfillment'},
+            port: {value: 8090, validate: RED.validators.number()},
+            privateKey: {value: '', required: true},
+            cert: {value: '', required: true}
+        },
+        label: function() {
+            return ":" + this.port + this.path;
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="Google Actions Server">
+
+    <div class="form-row">
+        <label for="node-config-input-path"><i class="fa fa-plug"></i> URL Path</label>
+        <input type="text" id="node-config-input-path" placeholder="Path">
+    </div>
+
+    <div class="form-row">
+        <label for="node-config-input-port"><i class="fa fa-circle"></i> Port</label>
+        <input type="text" id="node-config-input-port" placeholder="Port">
+    </div>
+
+    <div class="form-row">
+        <label for="node-config-input-privateKey"><i class="fa fa-key"></i> Private Key</label>
+        <input type="text" id="node-config-input-privateKey" placeholder="Path to Private Key">
+    </div>
+
+    <div class="form-row">
+        <label for="node-config-input-cert"><i class="fa fa-certificate"></i> Certificate</label>
+        <input type="text" id="node-config-input-cert" placeholder="Path to Certificate">
+    </div>
+    
+</script>
+
+<script type="text/html" data-help-name="Google Actions Server">
+    <p>Configuration for one fulfillment endpoint.</p>
+    <h3>Details</h3>
+    <p>This node creates an endpoint for webhook fulfillment for Google Actions. It exposes a full HTTPS server using <a href="https://expressjs.com">Express</a>. The server also needs a fully functional SSL certificate because of <a href="https://developers.google.com/assistant/conversational/webhooks">Google's specifications for webhooks</a>. One option would be spinning up a danymic DNS adress with SSL using <a href="https://certbot.eff.org">Certbot</a> for your network. See the docs for more information.</p>
+</script>

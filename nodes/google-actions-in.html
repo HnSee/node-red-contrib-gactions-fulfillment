@@ -1,0 +1,58 @@
+<script type="text/javascript">
+    RED.nodes.registerType('Google Actions In',{
+        category: 'Google Assistant',
+        color: '#FFFFFF',
+        defaults: {
+            name: {value: ''},
+            endpoint: {value: '', type:"Google Actions Server"},
+            handler: {value: 'Default Handler', required: true}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "Google_Assistant_logo.png",
+        label: function() {
+            return this.name || "Google Actions In";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="Google Actions In">
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-endpoint"><i class="fa fa-plug"></i> Endpoint</label>
+        <input type="text" id="node-input-endpoint" placeholder="Endpoint">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-handler"><i class="fa fa-suitcase"></i> Handler</label>
+        <input type="text" id="node-input-handler" placeholder="Handler">
+    </div>
+
+</script>
+
+<script type="text/html" data-help-name="Google Actions In">
+    <p>Creates a fulfillment handler for Google Actions.</p>
+    <h3>Outputs</h3>
+        <dl class="message-properties">
+            <dt>conversation
+                <span class="property-type">object</span>
+            </dt>
+            <dd>
+                An object with information regarding the current conversation. This data must be passed to the Google Actions Out node. It has the following sub properties:
+                <ul>
+                    <li><code>handler</code>: The handler the action requested.</li>
+                    <li><code>lang</code>: The language code sent by the action, e.g. 'de-DE' for german.</li>
+                    <li><code>sessionID</code>: The language code sent by the action, e.g. 'de-DE' for german.</li>
+                    <li><code>intent</code>: The sent intent object. Contains the properties <code>name</code>, <code>params</code> and <code>query</code>.</li>
+                    <li><code>response</code>: The internal response object to be sent back to the action. It is used iternally, direct editing is not recommended.</li>
+                </ul>
+            </dd>
+        </dl>
+    <h3>Details</h3>
+    <p>This node creates a handler for the given endpoint. Once the handler is specified it starts listening for requests for that specific handler. When a requests arrives this node sends the <code>conversation</code> object (see above) to further connected nodes. To send a response this node's output must be passed to a Google Actions Out node when the response has been built over the flow.</p>
+</script>

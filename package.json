@@ -1,0 +1,28 @@
+{
+  "name": "node-red-contrib-gactions-fulfillment",
+  "version": "2.3.0",
+  "description": "Node-RED nodes for creating webhook fulfillments for the Google Assistant.",
+  "scripts": {},
+  "keywords": [
+    "node-red"
+  ],
+  "author": {
+    "name": "HnSee",
+    "url": "https://github.com/HnSee"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "node-red": {
+    "nodes": {
+      "Google Actions Server": "./nodes/google-actions-server.js",
+      "Google Actions In": "./nodes/google-actions-in.js",
+      "Google Actions Language": "./nodes/google-actions-language.js",
+      "Google Actions Media": "./nodes/google-actions-media.js",
+      "Google Actions Speak": "./nodes/google-actions-speak.js",
+      "Google Actions Out": "./nodes/google-actions-out.js"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+<script type="text/javascript">
+    RED.nodes.registerType('Google Actions Speak',{
+        category: 'Google Assistant',
+        color: '#FFFFFF',
+        defaults: {
+            name: {value: ''}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "Google_Assistant_logo.png",
+        label: function() {
+            return this.name || "Google Actions Speak";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="Google Actions Speak">
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-tips">The messages sent to this node must originate from a Google Action In node.</span></div>
+</script>
+
+<script type="text/html" data-help-name="Google Actions Speak">
+    <p>Adds a speak output to the Google Action request.</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">string | buffer</span>
+        </dt>
+        <dd>The message to be sent.</dd>
+        <dt>conversation
+            <span class="property-type">object</span>
+        </dt>
+        <dd>The conversation object.</dd>
+    </dl>
+    <h3>Outputs</h3>
+        <dl class="message-properties">
+            <dt>payload
+                <span class="property-type">string</span>
+            </dt>
+            <dd>The added message.</dd>
+            <dt>conversation
+                <span class="property-type">object</span>
+            </dt>
+            <dd>The (processed) conversation object.</dd>
+        </dl>
+    <h3>Details</h3>
+    <p>This node adds a speaking output to the google request with the given input.</p>
+</script>
