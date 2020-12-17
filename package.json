@@ -1,11 +1,20 @@
 {
   "name": "node-red-contrib-gactions-fulfillment",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Node-RED nodes for creating webhook fulfillments for the Google Assistant.",
   "scripts": {},
   "keywords": [
-    "node-red"
+    "node-red",
+    "google",
+    "google actions",
+    "google assistant",
+    "chatbot",
+    "chat"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HnSee/node-red-contrib-gactions-fulfillment.git"
+  },
   "author": {
     "name": "HnSee",
     "url": "https://github.com/HnSee"
