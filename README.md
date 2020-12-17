@@ -1,5 +1,7 @@
 # Node-RED Google Actions Fulfillment
 
+![npm](https://img.shields.io/npm/v/node-red-contrib-gactions-fulfillment) ![GitHub package.json version](https://img.shields.io/github/package-json/v/HnSee/node-red-contrib-gactions-fulfillment) [![GitHub license](https://img.shields.io/github/license/HnSee/node-red-contrib-gactions-fulfillment)](https://github.com/HnSee/node-red-contrib-gactions-fulfillment/blob/master/LICENSE)
+
 These Node-RED nodes enable Node-RED to serve as a webhook fulfimment endpoint for Google Actions. With them you can interact with Google Actions.
 
 ## Installation
