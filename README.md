@@ -9,7 +9,7 @@ These Node-RED nodes enable Node-RED to serve as a webhook fulfimment endpoint f
 Switch to your Node-RED directory, e.g. `~/.node-red` and type:
 
 ```bash
-npm install <path-to-package>
+npm install node-red-contrib-gactions-fulfillment
 ```
 
 This will install this package for your Node-RED instance.
