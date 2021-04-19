@@ -1,6 +1,7 @@
 # Node-RED Google Actions Fulfillment
 
-![npm](https://img.shields.io/npm/v/node-red-contrib-gactions-fulfillment) ![GitHub Release Date](https://img.shields.io/github/release-date/HnSee/node-red-contrib-gactions-fulfillment) ![Node-RED Library](https://img.shields.io/badge/Node--RED-Library-%23AA4444?link=https://flows.nodered.org/node/node-red-contrib-gactions-fulfillment) [![GitHub license](https://img.shields.io/github/license/HnSee/node-red-contrib-gactions-fulfillment)](https://github.com/HnSee/node-red-contrib-gactions-fulfillment/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/node-red-contrib-gactions-fulfillment)](https://www.npmjs.com/package/node-red-contrib-gactions-fulfillment) [![GitHub Release Date](https://img.shields.io/github/release-date/HnSee/node-red-contrib-gactions-fulfillment)](https://github.com/HnSee/node-red-contrib-gactions-fulfillment/releases/tag/v2.3.2) [![Node-RED Library](https://img.shields.io/badge/Node--RED-Library-%23AA4444?link=https://flows.nodered.org/node/)](https://flows.nodered.org/node/node-red-contrib-gactions-fulfillment)
+[![GitHub license](https://img.shields.io/github/license/HnSee/node-red-contrib-gactions-fulfillment)](https://github.com/HnSee/node-red-contrib-gactions-fulfillment/blob/master/LICENSE)
 
 These Node-RED nodes enable Node-RED to serve as a webhook fulfimment endpoint for Google Actions. With them you can interact with Google Actions.
 
@@ -107,15 +108,21 @@ This node sends a response back to the action. It does not do much on it's own, 
 7. Test it. Use a tool for HTTP(S) requests of your choice, e.g. `curl`, and send an example request:
 
 ```bash
-curl --insecure -X POST -H "Content-Type: application/json" -d '{"handler":{"name":"ExampleHeader"},"intent":{"name":"actions.intent.BRUH","params":{},"query":""},"scene":{"name":"SceneName","slotFillingStatus":"UNSPECIFIED","slots":{}},"session":{"id":"session_id_69420","params":{},"typeOverrides":[]},"user":{"locale":"en-US","params":{"verificationStatus":"VERIFIED"}},"home":{"params":{}},"device":{"capabilities":["SPEECH","RICH_RESPONSE","LONG_FORM_AUDIO"]}}' https://localhost:8090/fulfillment
+# HTTP
+curl -X POST -H "Content-Type: application/json" -d '{"handler":{"name":"ExampleHandler"},"intent":{"name":"actions.intent.NICE","params":{},"query":""},"scene":{"name":"SceneName","slotFillingStatus":"UNSPECIFIED","slots":{}},"session":{"id":"session_id_69420","params":{},"typeOverrides":[]},"user":{"locale":"en-US","params":{"verificationStatus":"VERIFIED"}},"home":{"params":{}},"device":{"capabilities":["SPEECH","RICH_RESPONSE","LONG_FORM_AUDIO"]}}' http://localhost:8090/fulfillment
+
+# HTTPS
+curl --insecure -X POST -H "Content-Type: application/json" -d '{"handler":{"name":"ExampleHandler"},"intent":{"name":"actions.intent.NICE","params":{},"query":""},"scene":{"name":"SceneName","slotFillingStatus":"UNSPECIFIED","slots":{}},"session":{"id":"session_id_69420","params":{},"typeOverrides":[]},"user":{"locale":"en-US","params":{"verificationStatus":"VERIFIED"}},"home":{"params":{}},"device":{"capabilities":["SPEECH","RICH_RESPONSE","LONG_FORM_AUDIO"]}}' https://localhost:8090/fulfillment
 ```
 
 ## SSL
-According to [Google's webhook requirements](https://developers.google.com/assistant/conversational/webhooks?tool=sdk) you need a valid SSL certificate for your server in order to be accessible by an action. This certificate can be set easily per endpoint as specified above. For obtaining a SSL certificate for your server there are several options:
+According to [Google's webhook requirements](https://developers.google.com/assistant/conversational/webhooks?tool=sdk) you need a valid HTTPS connection including a valid SSL certificate for your server in order to be accessible by an action.
 
-- Using a DNS adress and Let's Encrypt
-    - When you have a DNS adress for your server or home adress (you will need one) you can get a SSL Certificate for free using the Service [Let's Enrypt](https://letsencrypt.org/) with the application [certbot](https://certbot.eff.org/)
+The easiest option to achieve this is to use the configuration node's HTTP server and expose it to a service like [ngrok](https://ngrok.com/). 
+
+Another but harder option is to use the built in HTTPS server. The certificate can be set easily per endpoint as specified above. For obtaining a SSL certificate for your server there are several options like this one:
+
+- Using a DNS address and Let's Encrypt
+    - If you have a DNS adress for your server or home adress (you will need one) you can get a SSL Certificate for free using the Service [Let's Enrypt](https://letsencrypt.org/) with the application [certbot](https://certbot.eff.org/)
     - I would advise you to spin up a temporary NGINX-Server for obtaining it and then just keep the certificate with the key. Those can then be used in the application.
     - There are plenty [tutorials](https://www.digitalocean.com/community/tutorials/how-to-set-up-let-s-encrypt-with-nginx-server-blocks-on-ubuntu-16-04) on how to do so
-
-It is planned to add an option for the nodes to use an HTTP server so this HTTP service can be forwarded then to services like [ngrok](https://snapcraft.io/ngrok). Due to time limitations this functionality has not been implemented yet but is planned for the future.
