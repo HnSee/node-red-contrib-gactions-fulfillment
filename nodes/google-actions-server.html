@@ -4,11 +4,33 @@
         defaults: {
             path: {value: '/fulfillment'},
             port: {value: 8090, validate: RED.validators.number()},
-            privateKey: {value: '', required: true},
-            cert: {value: '', required: true}
+            https: {value: true, required: true},
+            privateKey: {value: '', required: false},
+            cert: {value: '', required: false}
         },
         label: function() {
             return ":" + this.port + this.path;
+        },
+        oneditprepare: function(e) {
+            
+            if (this.https) {
+                $('#row-private-key').css('display', 'block');
+                $('#row-certificate').css('display', 'block');
+            } else {
+                $('#row-private-key').css('display', 'none');
+                $('#row-certificate').css('display', 'none');
+            }
+
+            $('#node-config-input-https').change(function(e) {
+                if (e.target.checked) {
+                    $('#row-private-key').css('display', 'block');
+                    $('#row-certificate').css('display', 'block');
+                } else {
+                    $('#row-private-key').css('display', 'none');
+                    $('#row-certificate').css('display', 'none');
+                }
+            });
+
         }
     });
 </script>
@@ -26,11 +48,16 @@
     </div>
 
     <div class="form-row">
+        <label for="node-config-input-https"><i class="fa fa-lock"></i> Use HTTPS</label>
+        <input type="checkbox" id="node-config-input-https" placeholder="Path to Private Key">
+    </div>
+
+    <div class="form-row" id="row-private-key">
         <label for="node-config-input-privateKey"><i class="fa fa-key"></i> Private Key</label>
         <input type="text" id="node-config-input-privateKey" placeholder="Path to Private Key">
     </div>
 
-    <div class="form-row">
+    <div class="form-row" id="row-certificate">
         <label for="node-config-input-cert"><i class="fa fa-certificate"></i> Certificate</label>
         <input type="text" id="node-config-input-cert" placeholder="Path to Certificate">
     </div>
@@ -40,5 +67,7 @@
 <script type="text/html" data-help-name="Google Actions Server">
     <p>Configuration for one fulfillment endpoint.</p>
     <h3>Details</h3>
-    <p>This node creates an endpoint for webhook fulfillment for Google Actions. It exposes a full HTTPS server using <a href="https://expressjs.com">Express</a>. The server also needs a fully functional SSL certificate because of <a href="https://developers.google.com/assistant/conversational/webhooks">Google's specifications for webhooks</a>. One option would be spinning up a danymic DNS adress with SSL using <a href="https://certbot.eff.org">Certbot</a> for your network. See the docs for more information.</p>
+    <p>This node creates an endpoint for webhook fulfillment for Google Actions. It exposes a full HTTP(S) server using <a href="https://expressjs.com">Express</a>. The HTTP connection can then be forwarded using services like <a href="https://ngrok.com/">ngrok</a> to achieve an accessible HTTPS connection. A functional HTTPS connection including an working certificate is needed because of <a href="https://developers.google.com/assistant/conversational/webhooks">Google's specifications for webhooks</a>.
+    <h4>Local HTTPS server</h4>    
+    If the HTTPS server is used ("Use HTTPS" ticked) a functional SSL certificate is needed. One option would be spinning up a danymic DNS adress with SSL using <a href="https://certbot.eff.org">Certbot</a> for your network.</p>
 </script>
